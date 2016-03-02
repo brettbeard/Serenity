@@ -253,8 +253,11 @@
 
             try
             {
+                var dialect = connection.GetDialect();
+
                 foreach (var p in param)
-                    AddParamWithValue(command, p.Key, p.Value);
+                    AddParamWithValue(command, p.Key, p.Value, dialect);
+
                 return command;
             }
             catch
@@ -309,7 +312,7 @@
         ///   Parametre değeri.</param>
         /// <returns>
         ///   Yeni oluşturulan <see cref="DbParameter"/> nesnesi.</returns>
-        public static DbParameter AddParamWithValue(this DbCommand command, string name, object value)
+        public static DbParameter AddParamWithValue(this DbCommand command, string name, object value, ISqlDialect dialect)
         {
             DbParameter param = command.CreateParameter();
 
@@ -325,7 +328,7 @@
                 param.DbType = SqlMapper.LookupDbType(value.GetType(), name);
 
                 if (param.DbType == DbType.DateTime &&
-                    command.Connection.GetDialect().UseDateTime2)
+                    (dialect ?? SqlSettings.DefaultDialect).UseDateTime2)
                     param.DbType = DbType.DateTime2;
             }
 

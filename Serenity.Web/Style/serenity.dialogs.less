@@ -47,6 +47,10 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
     padding: 12px 12px 0 12px;
 }
 
+.s-MessageDialog {
+    min-width: 310px;
+}
+
 .s-MessageDialog .message {
     padding: 24px 6px 6px 86px;
     min-height: 80px;
@@ -96,47 +100,57 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 }
 
 .flex-layout {
-    .category { .display(flex); .flex-wrap(wrap); .flex-direction(row); }
-    .field { .display(flex); .flex-wrap(nowrap); .align-items(flex-start); .flex(0, 1, 100%); min-width: 0; }
-    .editor { .flex(1, 1, 80%); min-width: 0; }
-    input.editor[type=checkbox] { .flex(0, 0, auto); }
     .s-Form .editor { float: initial; }
-    .editor { float: initial; }
-    .s-Form .caption { float: initial; .flex(0, 0, auto); }
-    .s-Form .vx { float: initial; .flex(0, 0, auto); }
+    .s-Form .caption { float: initial; }
+    .s-Form .vx { float: initial; }
+
+    .field { .display(flex); .flex-wrap(nowrap); .align-items(flex-start); .flex(0, 1, 100%); min-width: 0; }
+    .caption { .flex(0, 0, auto); }
+
+    .editor { float: initial; .flex(1, 1, 80%); min-width: 0; }
+    input.editor[type=checkbox] { .flex(0, 0, auto); }
+    .s-DateTimeEditor.dateQ { .flex(1, 1, 50%); }
+    .s-DateTimeEditor.time { .flex(0, 0, auto); margin-left: 4px; }
+
+    .vx { .flex(0, 0, auto); }
+
+    .category { .display(flex); .flex-wrap(wrap); .flex-direction(row); }
     .category-links { .flex(0, 0, auto); }
     .category-title { .flex(0, 1, 100%); }
-
-    @media (max-width: 760px) {
-        .field { .flex-wrap(wrap); }
-        .select2-container { .flex(1); }
-        .s-Form .caption { .flex(0, 0, 100%); width: auto; text-align: left; padding-top: 0px; padding-bottom: 2px; }
-        .category-title { margin: 12px 10px 8px 0; }
-        .s-PropertyGrid .category-title { padding: 3px 0; }
-    }
-}
-
-body.mobile-device.modal-dialog-open {
-    overflow-y: hidden;
-}
-
-.ui-dialog.flex-layout {
 
     .ui-dialog-content, 
     .s-DialogContent, 
     .s-Form, 
     form,
-    .fieldset, 
+    .fieldset,
+    .tab-pane,
+    .tab-pane > .s-DataGrid,
     .s-PropertyGrid {
         .display(flex);
         .flex-direction(column);
-        .flex-grow(1);
+        .flex(1, 1, 50%);
+    }
+
+    .grid-container {
+        .flex(1, 1, 50%);
     }
 
     .s-PropertyGrid .categories {
         .flex-grow(1);
         overflow-y: scroll;
     }
+
+    @media (max-width: 760px) {
+        .field { .flex-wrap(wrap); }
+        .select2-container { .flex(1); }
+        .caption { .flex(0, 0, 100%); width: auto; }
+        .s-Form .caption { text-align: left; padding-top: 0px; padding-bottom: 2px; }
+        .s-PropertyGrid .category-title { padding: 3px 0; margin: 12px 10px 8px 0; }
+    }
+}
+
+body.mobile-device.modal-dialog-open {
+    overflow-y: hidden;
 }
 
 .ui-dialog.mobile-layout {
